@@ -5,11 +5,17 @@ module.exports = (sequelize, DataTypes) => {
       brand: DataTypes.STRING,
       model: DataTypes.STRING,
       version: DataTypes.STRING,
-      year: DataTypes.DATE,
+      year: DataTypes.STRING,
       imageUrl: DataTypes.STRING,
       chassi: DataTypes.STRING,
-      colorId: DataTypes.INTEGER,
     });
 
+    Vehicle.associate = (models) => {
+      Vehicle.hasOne(models.Color, {
+        foreignKey: 'id',
+        as: 'color'
+      })
+    }
     return Vehicle
   }
+  
