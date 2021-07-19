@@ -1,5 +1,6 @@
 const vehicleController = require('./controllers/vehicle');
 const vehicleValidation = require('./validations/vehicle');
+const colorController = require('./controllers/Color');
 const ValidateException = require('./exceptions/validate');
 const routes = require('express').Router();
 
@@ -95,6 +96,17 @@ routes.put('/vehicle/:id', async (req, res) => {
     await vehicleValidation.updateById(params)
 
     const result = await vehicleController.updateById(params);
+    res.status(200).send(result);
+  } catch (err) {
+    res.status(err.code || 400).send(
+      new ValidateException(err.code, 'Erro ao processar solicitação!', req.url, err.errors)
+    )
+  }
+});
+
+routes.get('/colors', async (req, res)  => {  
+  try {
+    const result = await colorController.findAll();
     res.status(200).send(result);
   } catch (err) {
     res.status(err.code || 400).send(

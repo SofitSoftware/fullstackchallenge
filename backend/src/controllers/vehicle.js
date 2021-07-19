@@ -40,7 +40,7 @@ module.exports = {
       const vehicles = await Vehicle.findAndCountAll({
         limit: perPage,
         offset: (page - 1) * perPage,
-        attributes: {exclude: ['createdAt', 'updatedAt', 'colorId']}
+        attributes: { exclude: ['createdAt', 'updatedAt', 'colorId'] }
       });
 
       return paginationFormatter(vehicles, page, perPage, vehicles.count);

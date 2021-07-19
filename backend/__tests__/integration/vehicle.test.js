@@ -1,5 +1,4 @@
 const request = require('supertest');
-const { response } = require('../../src/app');
 const { Vehicle } = require('../../src/app/models')
 
 const app = require('../../src/app');
