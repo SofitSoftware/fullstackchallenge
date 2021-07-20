@@ -21,8 +21,8 @@ routes.get('/vehicle/:id', async (req, res) => {
 });
 
 routes.post('/vehicle', async (req, res) => {
-  const { chassi, model, version, year, imageUrl, brand, plate } = req.body;
-  const params = { chassi, model, version, year, imageUrl, brand, plate };
+  const { chassi, model, version, year, imageUrl, brand, plate, type, colorId } = req.body;
+  const params = { chassi, model, version, year, imageUrl, brand, plate, type, colorId };
   
   try {
     await vehicleValidation.create(params)
@@ -36,7 +36,7 @@ routes.post('/vehicle', async (req, res) => {
   }
 });
 
-routes.get('/vehicle', async (req, res) => {
+routes.get('/vehicles', async (req, res) => {
   const {page, per_page: perPage} = req.query; 
   const params = { page, perPage }
   
@@ -44,6 +44,7 @@ routes.get('/vehicle', async (req, res) => {
     await vehicleValidation.findAll(params)
 
     const result = await vehicleController.findAll(params);
+
     res.status(200).send(result);
   } catch (err) {
     res.status(err.code || 400).send(
@@ -79,6 +80,8 @@ routes.put('/vehicle/:id', async (req, res) => {
     year,
     imageUrl,
     chassi,
+    type,
+    colorId
   } = req.body;
 
   const params = { 
@@ -90,6 +93,8 @@ routes.put('/vehicle/:id', async (req, res) => {
     year,
     imageUrl,
     chassi,
+    type,
+    colorId
    };
   
   try {

@@ -1,6 +1,5 @@
 const { Vehicle, Color } = require("../app/models");
 const ErrorsException = require("../exceptions/error");
-const paginationFormatter = require("../utils/paginationFormatter");
 
 module.exports = {
   async findOne(params) {
@@ -42,8 +41,19 @@ module.exports = {
         offset: (page - 1) * perPage,
         attributes: { exclude: ['createdAt', 'updatedAt', 'colorId'] }
       });
+      const findDTO = {};
+      findDTO.data = vehicles.rows.map(resu => {
+        return  {id: resu.id, type: 'vehicles', attributes: {...resu.dataValues}}
+      })
 
-      return paginationFormatter(vehicles, page, perPage, vehicles.count);
+      const maxPage = Math.ceil((vehicles.count / perPage))
+      const next = (Number(page) + 1) <= maxPage ? (Number(page) + 1) : page;
+      findDTO.links = {
+          "Anterior": `${process.env.FRONT_END_ADDRESS}/vehicles?page[number]=${(page - 1) || 1}&page[size]=${perPage}`,
+          "Proximo": `${process.env.FRONT_END_ADDRESS}/vehicles?page[number]=${next}&page[size]=${perPage}`,
+        };
+      
+      return findDTO;
     }catch(err) {
       console.log(err);
       throw new ErrorsException(errors, 400);

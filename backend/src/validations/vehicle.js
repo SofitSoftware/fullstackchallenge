@@ -4,17 +4,18 @@ const FieldMessage = require("../exceptions/fieldmessage");
 const Yup = require('yup');
 
 const schema = Yup.object().shape({
-  plate: Yup.string().required('Campo Obrigatório'),
+  plate: Yup.string().max(8, 'Máximo de 8 caracateres').required('Campo Obrigatório'),
   brand: Yup.string().required('Campo Obrigatório'),
   model: Yup.string().required('Campo Obrigatório'),
   version: Yup.string().required('Campo Obrigatório'),
+  type: Yup.string().required('Campo Obrigatório'),
   year: Yup
   .string()
   .required('Campo Obrigatório')
   .test(
     'year',
-    'Ano inválido', (yearTest) => {
-      return Number(yearTest) <= new Date().getFullYear();
+    'Não pode ser maior que a atual nem muito antiga!', (yearTest) => {
+      return Number(yearTest) <= new Date().getFullYear() && Number(yearTest) >=  (new Date().getFullYear() - 500)
     }
   ),
   chassi: Yup.string().required('Campo Obrigatório')
@@ -118,7 +119,7 @@ module.exports = {
       where: { plate },
     });
 
-    if (vehiclePlate && vehiclePlate.id !== id) {
+    if (vehiclePlate && vehiclePlate.id !== Number(id)) {
       errors.push(new FieldMessage('plate', 'Carro com está placa já cadastrada!'));
     }
     

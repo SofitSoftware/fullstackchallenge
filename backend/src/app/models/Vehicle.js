@@ -8,6 +8,8 @@ module.exports = (sequelize, DataTypes) => {
       year: DataTypes.STRING,
       imageUrl: DataTypes.STRING,
       chassi: DataTypes.STRING,
+      type: DataTypes.STRING,
+      colorId: DataTypes.INTEGER,
     });
 
     Vehicle.associate = (models) => {

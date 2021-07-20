@@ -16,6 +16,7 @@ describe('Vehicle', () => {
     year: '2021',
     imageUrl: 'http://google.com.br',
     chassi: '9BWSU19508B302158',
+    type: 'moto'
   };
 
   it('should receive a vehicle when pass valid id', async () => {
@@ -59,13 +60,13 @@ describe('Vehicle', () => {
   });
 
   it('should find all vehicles with valid pagination', async () => {
-    const response = await request(app).get('/vehicle/?page=1&per_Page=10');
+    const response = await request(app).get('/vehicles/?page=1&per_Page=10');
 
     expect(response.status).toBe(200);
   });
 
   it('should not find vehicles with invalid pagination', async () => {
-    const response = await request(app).get('/vehicle/?page=-1&per_Page=-10');
+    const response = await request(app).get('/vehicles/?page=-1&per_Page=-10');
 
     expect(response.status).toBe(400);
   });

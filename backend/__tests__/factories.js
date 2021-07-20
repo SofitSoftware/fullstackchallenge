@@ -9,6 +9,7 @@ factory.define('Vehicle', Vehicle, {
   year: '2021',
   imageUrl: 'http://google.com.br',
   chassi: '9BWSU19508B302158',
+  type: 'moto',
 });
 
 module.exports = factory;

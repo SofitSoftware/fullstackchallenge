@@ -31,9 +31,13 @@ module.exports = {
       },
       image_url: {
         type: Sequelize.TEXT,
-        allowNull: false,
+        allowNull: true,
       },
       chassi: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      type: {
         type: Sequelize.STRING,
         allowNull: false,
       },
