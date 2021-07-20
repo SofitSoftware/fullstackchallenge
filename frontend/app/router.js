@@ -9,4 +9,5 @@ export default class Router extends EmberRouter {
 Router.map(function () {
   this.route('vehicles');
   this.route('vehicles-create');
+  this.route('vehicle', {path: '/vehicle/:vehicle_id'});
 });

@@ -5,7 +5,7 @@
             alt="Car default IMG"
         >
         <div class="card-body">
-            <div class="card-text  row justify-content-between">{{@vehicle.model}}  <p>| Editar |</p> <p style="cursor: pointer;"{{on "click" (fn @delete @vehicle.id)}}>Excluir</p></div>
+            <div class="card-text  row justify-content-between">{{@vehicle.plate}}  <LinkTo @route='vehicle' @model={{@vehicle.id}}>| Editar |</LinkTo> <p style="cursor: pointer;"{{on "click" (fn @delete @vehicle.id)}}>Excluir</p></div>
         </div>
     </div>
     {{yield}}

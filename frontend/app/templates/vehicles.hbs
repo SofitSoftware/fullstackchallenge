@@ -6,13 +6,19 @@
   </div>
   <div class="vehicle-list mt-3 row justify-content-md-center">
     {{#each @model as |vehicle|}}
-      <VehicleCart @vehicle={{vehicle}} @delete={{deleteVehicle}}/>
+    <VehicleCart @vehicle={{vehicle}} @delete={{deleteVehicle}} />
     {{/each}}
   </div>
   <div class="row justify-content-center">
+    {{#if @model.length}}
     {{#each-in @model.meta.pagination as |key value|}}
-      <p class="ml-3"><LinkTo @route="vehicles" @query={{hash page=value.number}}>{{key}}</LinkTo></p>
+    <p class="ml-3">
+      <LinkTo @route="vehicles" @query={{hash page=value.number}}>{{key}}</LinkTo>
+    </p>
     {{/each-in}}
-
+    {{else}}
+    <h3>Você não possui nenhum veículo cadastrado</h3>
+    {{/if}}
   </div>
+
 </section>

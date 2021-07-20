@@ -3,8 +3,9 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
-export default class VehicleFormComponent extends Component {
+export default class VehicleEditFormComponent extends Component {
     @service router;
+
     @tracked plate = '';
     @tracked brand = '';
     @tracked model = '';
@@ -23,6 +24,26 @@ export default class VehicleFormComponent extends Component {
     constructor() {
         super(...arguments);
         this.findColors();
+        this.findOneVehicle();
+    }
+
+    async findOneVehicle() {
+        const response = await fetch(`http://localhost:3333/vehicle/${this.router.currentRoute.attributes}`, {
+            method: 'GET',
+        });
+
+        const data = await response.json();
+        console.log(data);
+        this.plate = data.plate;
+        this.type = data.type;
+        this.version = data.version;
+        this.colorId = data.color.id;
+        this.chassi = data.chassi;
+        await this.changeType(data.type);
+        await this.changeBrand(data.brand);
+        this.model = Number(data.model);
+        this.brand = Number(data.brand);
+        this.year = data.year;
     }
 
     async findColors() {
@@ -46,6 +67,7 @@ export default class VehicleFormComponent extends Component {
             method: 'GET',
         })
         this.brands = await response.json()
+        return ;
     }
 
     @action
@@ -55,6 +77,8 @@ export default class VehicleFormComponent extends Component {
             method: 'GET',
         })
         this.models = (await response.json()).modelos
+
+        return ;
     }
     
     @action
@@ -66,8 +90,8 @@ export default class VehicleFormComponent extends Component {
     async submit(event) {
         event.preventDefault();
         try {
-            const response = await fetch(`http://localhost:3333/vehicle`, {
-                method: 'POST',
+            const response = await fetch(`http://localhost:3333/vehicle/${this.router.currentRoute.attributes}`, {
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -83,7 +107,7 @@ export default class VehicleFormComponent extends Component {
                 })
             });
 
-            if(response.status === 204) {
+            if(response.status === 200) {
                 this.router.transitionTo('/vehicles'); 
             }else {
                 const data = await response.json()

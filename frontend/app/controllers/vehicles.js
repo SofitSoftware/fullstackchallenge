@@ -18,7 +18,7 @@ export default class VehiclesController extends Controller {
     }
 
     @action
-    async deleteVehicle(id) {
+    async deleteVehicle(id) {   
         await fetch(`http://localhost:3333/vehicle/${id}`, {
             method: 'DELETE'
         });
