@@ -1,2 +1,18 @@
-{{page-title "Vehicles"}}
-<h3 style="text-align:center">Insira aqui sua Lista de Veículos</h3>
+{{page-title "Veículos"}}
+<section>
+  <div class="d-flex title mt-3">
+    <h4>Seus veículos</h4>
+    <LinkTo @route="vehicles-create"><button type="button" class="btn btn-primary">Novo Veículo</button></LinkTo>
+  </div>
+  <div class="vehicle-list mt-3 row justify-content-md-center">
+    {{#each @model as |vehicle|}}
+      <VehicleCart @vehicle={{vehicle}} @delete={{deleteVehicle}}/>
+    {{/each}}
+  </div>
+  <div class="row justify-content-center">
+    {{#each-in @model.meta.pagination as |key value|}}
+      <p class="ml-3"><LinkTo @route="vehicles" @query={{hash page=value.number}}>{{key}}</LinkTo></p>
+    {{/each-in}}
+
+  </div>
+</section>

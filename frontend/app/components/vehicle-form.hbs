@@ -1,0 +1,127 @@
+<form class="row justify-content-md-center mt-2">
+  <div class="row mt-2">
+    <div class="col-md-4 col-sm-12">
+      <fieldset class="form-group">
+        <select 
+          class="custom-select form-control"
+          onchange={{action "changeType" value="target.value"}}
+        >
+          <option value="">Tipo</option>
+            <option value="carros">Carro</option>
+            <option value="motos">Moto</option>
+            <option value="caminhoes">Caminhões</option>
+        </select>
+        <small class="text-danger">{{this.error.type}}</small>
+      </fieldset>
+    </div>
+    <div class="col-md-4 col-sm-12">
+      <fieldset class="form-group">
+        <select 
+          class="custom-select form-control"
+          onchange={{action "changeModel" value="target.value"}}
+        >
+          <option value="">Modelos</option>
+          {{#each this.models as |model|}}
+            <option value="{{model.codigo}}">{{model.nome}}</option>
+          {{/each}}
+        </select>
+        <small class="text-danger">{{this.error.model}}</small>
+      </fieldset>
+    </div>
+
+     <div class="col-md-4 col-sm-12" >
+      <fieldset class="form-group">
+        <Input 
+          class="form-control form-control-md"
+          type="text"
+          placeholder="Versão"
+          @value={{this.version}}
+        />
+          <small class="text-danger">{{this.error.version}}</small>
+      </fieldset>
+    </div>
+
+    <div class="col-md-4 col-sm-12">
+      <fieldset class="form-group">
+        <select 
+          class="custom-select form-control"
+          onchange={{action "changeBrand" value="target.value"}}
+        >
+          <option value="">Marcas</option>
+          {{#each this.brands as |brand|}}
+            <option value="{{brand.codigo}}">{{brand.nome}}</option>
+          {{/each}}
+        </select>
+        <small class="text-danger">{{this.error.brand}}</small>
+      </fieldset>
+    </div>
+
+
+    <div class="col-md-4 col-sm-12">
+      <fieldset class="form-group">
+        <Input 
+          class="form-control form-control-md"
+          type="text"
+          placeholder="Placa"
+          @value={{this.plate}}
+        />
+        <small class="text-danger">{{this.error.plate}}</small>
+      </fieldset>
+    </div>
+
+    <div class="col-md-4 col-sm-12">
+      <fieldset class="form-group">
+        <Input 
+          class="form-control form-control-md"
+          type="text"
+          placeholder="Ano"
+          @value={{this.year}}
+        />
+        <small class="text-danger">{{this.error.year}}</small>
+      </fieldset>
+    </div>
+
+    <div class="col-md-6 col-sm-12">
+      <fieldset class="form-group">
+        <Input 
+          class="form-control form-control-md"
+          type="text"
+          placeholder="Chassi"
+          @value={{this.chassi}}
+        />
+        <small class="text-danger">{{this.error.chassi}}</small>
+      </fieldset>
+    </div>
+
+    <div class="col-md-6 col-sm-12">
+      <fieldset class="form-group">
+        <select 
+          class="custom-select"
+          onchange={{action "changeColor" value="target.value"}}
+        >
+          <option value="">Cores</option>
+          {{#each this.colors as |color|}}
+            <option value="{{color.id}}">{{color.name}}</option>
+          {{/each}}
+        </select>
+        <small class="text-danger">{{this.error.color}}</small>
+      </fieldset>
+    </div>
+  </div>
+
+  <div class="row ">
+    <button 
+      class="btn btn-md btn-success mx-4" 
+      type="button"
+      {{on "click" this.submit}} 
+    >
+      Cadastrar
+    </button>
+    <LinkTo @route="vehicles">
+      <button class="btn btn-md btn-light" type="button">
+        Voltar
+      </button>
+    </LinkTo>
+
+  </div>
+</form>
