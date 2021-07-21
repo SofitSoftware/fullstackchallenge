@@ -36,7 +36,6 @@ export default class VehicleEditFormComponent extends Component {
     });
 
     const data = await response.json();
-    console.log(data);
     this.plate = data.plate;
     this.version = data.version;
     this.colorId = data.color?.id || data.colorId;

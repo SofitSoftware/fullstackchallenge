@@ -30,7 +30,7 @@ yarn sequelize-cli db:seed:all
 Para iniciar o back-end basta rodar o comando:
 
 ```sh
-yarn dev
+yarn start
 ```
 ### Instalação - front-end
 
