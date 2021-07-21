@@ -5,22 +5,24 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default class VehiclesController extends Controller {
-    @tracked vehicles = [];
-    @service session;
-    @service router;
+  @tracked vehicles = [];
+  @service session;
+  @service router;
+  @service store;
 
-    queryParams = ['page', 'size'];
-    page = 1;
-    size = 6;
-    
-    constructor() {
-        super(...arguments);
-    }
+  queryParams = ['page', 'size'];
+  page = 1;
+  size = 6;
 
-    @action
-    async deleteVehicle(id) {   
-        await fetch(`http://localhost:3333/vehicle/${id}`, {
-            method: 'DELETE'
-        });
-    }
+  constructor() {
+    super(...arguments);
+  }
+
+  @action
+  async deleteVehicle(id) {
+    await fetch(`http://localhost:3333/vehicle/${id}`, {
+      method: 'DELETE'
+    });
+    this.model.update()
+  }
 }

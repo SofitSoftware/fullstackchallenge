@@ -32,11 +32,10 @@
         <select 
           class="custom-select form-control"
           onchange={{action "changeModel" value="target.value" }}
-          value={{this.model}}
+          value={{this.modelCode}}
         >
-          <option value="">Modelos</option>
-          {{#each this.models as |model|}}
-          <option value="{{model.codigo}}">{{model.nome}}</option>
+          {{#each this.models.modelos as |modelCode|}}
+          <option value="{{modelCode.codigo}}">{{modelCode.nome}}</option>
           {{/each}}
         </select>
         <small class="text-danger">{{this.error.model}}</small>

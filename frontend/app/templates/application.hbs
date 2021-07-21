@@ -1,12 +1,18 @@
 {{page-title "EmberQuickstart"}}
-<nav class="navbar navbar-light bg-light">
-  <LinkTo @route="vehicles">
-    <a class="navbar-brand">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Circle-icons-car.svg/1200px-Circle-icons-car.svg.png" width="30" height="30" class="d-inline-block align-top" alt="">
-      Meus Veículos
-    </a>
-  </LinkTo>
-</nav>
-<div class="container">
-    {{outlet}}
+<div class="body">
+  <nav class="navbar navbar-light bg-light">
+    <LinkTo @route="vehicles">
+      <a class="navbar-brand">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Circle-icons-car.svg/1200px-Circle-icons-car.svg.png"
+          width="30" height="30" class="d-inline-block align-top" alt="">
+        Meus Veículos
+      </a>
+    </LinkTo>
+  </nav>
+  <div class="shadow">
+    <div class="container">
+      {{outlet}}
+    </div>
+  </div>
 </div>

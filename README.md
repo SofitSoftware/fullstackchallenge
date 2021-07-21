@@ -1,44 +1,57 @@
-# Desafio técnico Dev Full Stack
+##### Pré-requisitos
+Yarn e Node
+Banco utilizado: Postgres
+### Instalação - back-end
 
-Este teste visa avaliar os conhecimentos e habilidades na nossa stack de tecnologias necessários para aplicação a oportunidade de desenvolvedor full stack aqui na [Sofit](https://sofit4.com.br).
+Instalação das dependencias.
+Após fazer o clone do projeto
+```sh
+$ cd backend
+$ yarn install
+```
+Duplique o arquivo .env.sample e renomeie para .env 
 
-## Objetivo do teste
+Após isto altere as env com seus dados, aqui vai um exemplo, siga de acordo com seus dados:
+###### POR PADRAO USE A PORTA 3333
+```
+PORT=3333
+DB_HOST=localhost
+DB_USER=postgres
+DB_PASS=*****
+DB_NAME=vehicles
+FRONT_END_ADDRESS=http://localhost:4200
+```
+Rode o comando para gerar as tabela e após isto rode as seeds:
+```sh
+yarn sequelize db:migrate
+yarn sequelize-cli db:seed:all
+```
 
-O teste consiste em desenvolver uma pequena aplicação para um CRUD de veículos que deve conter pelo menos os seguintes itens:
-- Listar veículos,
-- Inserir um veículo,
-- Visualizar um veículo,
-- Editar um veículo, 
-- Excluir um veículo.
+Para iniciar o back-end basta rodar o comando:
 
-Fique a vontade para construir a interface da forma que achar melhor, este será um dos pontos avaliados. 
+```sh
+yarn dev
+```
+### Instalação - front-end
 
-Sugestão mínima de campos para cadastro: Placa, Marca, Modelo, Versão e Ano. Mas fique a vontade para adicionar o que achar pertinente.
+Na raiz do projeto acesse a pasta do frontend e instale as dependências:
 
-As APIs também podem ser construídas utilizando o Design Pattern de seu interesse.
+```sh
+$ cd frontend
+$ yarn install 
+```
 
-## Requisitos
+Para iniciar o projeto basta rodar o comando:
 
-Já deixamos o projeto iniciado com uma stack definida, basta fazer o fork do repositório e dar continuidade:
-Front: [EmberJS](https://emberjs.com/)\
-Back: [NodeJS + Express](https://expressjs.com/pt-br/)\
-Banco: [MongoDB](https://www.mongodb.com/) ou [PostgreSQL](https://www.postgresql.org/). Utilize uma imagem do Docker de acordo com o banco escolhido:
-- [Imagem Postgres](https://hub.docker.com/_/postgres)
-- [Imagem Mongo](https://hub.docker.com/_/mongo)
+```sh
+yarn ember s --proxy:http://localhost:3333
+```
 
-Para listar marcas e modelos e carregar as opções em tela, você deve utilizar uma API pública que retorne as informações, encontramos [Esta aqui](https://deividfortuna.github.io/fipe/), mas se quiser utilizar outra, a vontade. O importante é avaliarmos como você realiza as requisições a APIs externas.
+Projeto ira rodar na porta 4200
 
-## Conclusão do desafio
+### Rodando testes automatizados.
+Para rodar os testes automatizados no backend basta rodar o comando:
 
-Após realizar o desafio, enviar ao Github e nos enviar o link no e-mail dev.jobs@sofit4.com.br.
-
-## O que vamos avaliar?
-
-- Estruturação e organização do código,
-- Funcionalidade da aplicação,
-- Interface final da aplicação,
-- Design Patterns,
-- Itens adicionais não solicitados.
-
-## Bonus
-- Criação de testes automatizados (Backend).
+```sh
+$ yarn test 
+```

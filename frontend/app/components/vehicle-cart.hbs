@@ -1,12 +1,17 @@
 <div class="mb-3 ml-4">
-    <div class="card" style="width: 18rem;">
-        <img class="card-img-top"
-            src="https://cdn.shortpixel.ai/client/q_lossy,ret_img,w_1200,h_675/https://azultecnologia.com/wp-content/uploads/2019/04/278583-saiba-mais-sobre-rastreamento-para-carros-alugados-1200x675.jpg"
-            alt="Car default IMG"
-        >
-        <div class="card-body">
-            <div class="card-text  row justify-content-between">{{@vehicle.plate}}  <LinkTo @route='vehicle' @model={{@vehicle.id}}>| Editar |</LinkTo> <p style="cursor: pointer;"{{on "click" (fn @delete @vehicle.id)}}>Excluir</p></div>
+  <div class="card border border-info card-box" style="width: 18rem;">
+    <img class="card-img-top"
+      src="https://cdn.shortpixel.ai/client/q_lossy,ret_img,w_1200,h_675/https://azultecnologia.com/wp-content/uploads/2019/04/278583-saiba-mais-sobre-rastreamento-para-carros-alugados-1200x675.jpg"
+      alt="Car default IMG">
+    <div class="card-body">
+      <div class="card-text  row justify-content-between">
+        <p class="plate-car">{{@vehicle.plate}}</p>
+        <div class="d-flex">
+          <LinkTo @route='vehicle' @model={{@vehicle.id}}> Editar | </LinkTo>
+          <p style="cursor: pointer; color: red;" {{on "click" (fn @delete @vehicle.id)}}> Excluir</p>
         </div>
+      </div>
     </div>
-    {{yield}}
+  </div>
+  {{yield}}
 </div>

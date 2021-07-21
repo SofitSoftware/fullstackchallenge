@@ -1,9 +1,10 @@
 {{page-title "Veículos"}}
 <section>
   <div class="d-flex title mt-3">
-    <h4>Seus veículos</h4>
+    <h4><b>Seus veículos</b></h4>
     <LinkTo @route="vehicles-create"><button type="button" class="btn btn-primary">Novo Veículo</button></LinkTo>
   </div>
+  <hr />
   <div class="vehicle-list mt-3 row justify-content-md-center">
     {{#each @model as |vehicle|}}
     <VehicleCart @vehicle={{vehicle}} @delete={{deleteVehicle}} />

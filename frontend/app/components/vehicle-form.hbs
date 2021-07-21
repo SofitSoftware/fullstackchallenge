@@ -35,8 +35,8 @@
           onchange={{action "changeModel" value="target.value"}}
         >
           <option value="">Modelos</option>
-          {{#each this.models as |model|}}
-            <option value="{{model.codigo}}">{{model.nome}}</option>
+          {{#each this.models as |modelData|}}
+            <option value="{{modelData.codigo}}">{{modelData.nome}}</option>
           {{/each}}
         </select>
         <small class="text-danger">{{this.error.model}}</small>

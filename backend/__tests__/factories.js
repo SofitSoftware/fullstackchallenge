@@ -3,8 +3,8 @@ const { Vehicle } = require('../src/app/models');
 
 factory.define('Vehicle', Vehicle, {
   plate: 'BRA2319',
-  brand: 'VolksWagen',
-  model: '32000 Gasolina',
+  brand: '2',
+  model: '1',
   version: '2',
   year: '2021',
   imageUrl: 'http://google.com.br',
