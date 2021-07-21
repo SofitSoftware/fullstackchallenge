@@ -9,7 +9,6 @@ module.exports = (sequelize, DataTypes) => {
       imageUrl: DataTypes.STRING,
       chassi: DataTypes.STRING,
       type: DataTypes.STRING,
-      colorId: DataTypes.INTEGER,
     });
 
     Vehicle.associate = (models) => {

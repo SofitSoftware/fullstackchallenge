@@ -6,11 +6,8 @@ module.exports = {
     const { id } = params;
 
     try {
-      const vehicle = await Vehicle.findByPk(id, {
-        include: [{
-          model: Color,
-          as: 'color',
-        }]
+      const vehicle = await Vehicle.findOne({
+        where: { id },
       });
 
       return vehicle;
@@ -76,11 +73,11 @@ module.exports = {
   },
 
   async updateById(params) {
-    const { id } = params;
+    const { id, colorId} = params;
     delete params.id;
     try {
       const vehicle = await Vehicle.findByPk(id);
-      await vehicle.update(params);
+      await vehicle.update({...params, colorId});
       return {};
     }catch(err) {
       console.log(err);

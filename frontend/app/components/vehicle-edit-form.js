@@ -6,17 +6,17 @@ import { inject as service } from '@ember/service';
 export default class VehicleEditFormComponent extends Component {
   @service router;
 
-  @tracked plate = '';
-  @tracked brand = '';
-  @tracked modelCode = '';
-  @tracked version = '';
-  @tracked year = '';
-  @tracked chassi = '';
-  @tracked imageUrl = '';
-  @tracked colorId = '';
+  @tracked plate = null;
+  @tracked brand = null;
+  @tracked modelCode = null;
+  @tracked version = null;
+  @tracked year = null;
+  @tracked chassi = null;
+  @tracked imageUrl = null;
+  @tracked colorId = null;
   @tracked error = {};
   @tracked colors = [];
-  @tracked type = '';
+  @tracked type = null;
   @tracked models = []
   @tracked brands = [];
 
@@ -38,7 +38,7 @@ export default class VehicleEditFormComponent extends Component {
     const data = await response.json();
     this.plate = data.plate;
     this.version = data.version;
-    this.colorId = data.color?.id || data.colorId;
+    this.colorId = data.colorId || null;
     this.chassi = data.chassi;
     this.type = data.type;
     await this.changeType(data.type);
@@ -100,11 +100,11 @@ export default class VehicleEditFormComponent extends Component {
         body: JSON.stringify({
           plate: this.plate,
           brand: this.brand,
-          model: this.model,
+          model: this.modelCode,
           version: this.version,
           year: this.year,
           chassi: this.chassi,
-          colorId: this.colorId,
+          colorId: this.colorId || null,
           type: this.type,
         })
       });

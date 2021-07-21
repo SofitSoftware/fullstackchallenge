@@ -44,13 +44,20 @@ $ yarn install
 Para iniciar o projeto basta rodar o comando:
 
 ```sh
-yarn ember s --proxy:http://localhost:3333
+yarn ember s --proxy=http://localhost:3333
 ```
 
 Projeto ira rodar na porta 4200
 
 ### Rodando testes automatizados.
-Para rodar os testes automatizados no backend basta rodar o comando:
+Crie um arquivo na raiz da pasta backend com nome env.test;
+
+Dentro da env.test insira:
+```
+DB_DIALECT=sqlite
+```
+
+Para rodar os testes automatizados utilizar o comando:
 
 ```sh
 $ yarn test 

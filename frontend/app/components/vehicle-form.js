@@ -5,17 +5,17 @@ import { inject as service } from '@ember/service';
 
 export default class VehicleFormComponent extends Component {
     @service router;
-    @tracked plate = '';
-    @tracked brand = '';
-    @tracked model = '';
-    @tracked version = '';
-    @tracked year = '';
-    @tracked chassi = '';
-    @tracked imageUrl = '';
-    @tracked colorId = '';
+    @tracked plate = null;
+    @tracked brand = null;
+    @tracked model = null;
+    @tracked version = null;
+    @tracked year = null;
+    @tracked chassi = null;
+    @tracked imageUrl = null;
+    @tracked colorId = null;
     @tracked error = {};
     @tracked colors = [];
-    @tracked type = '';
+    @tracked type = null;
     @tracked models = []
     @tracked brands = [];
 
